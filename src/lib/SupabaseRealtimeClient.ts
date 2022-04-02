@@ -1,3 +1,4 @@
+import { Subscription } from '@supabase/gotrue-js'
 import { RealtimeSubscription, RealtimeClient, Transformers } from '@supabase/realtime-js'
 import { GenericObject, SupabaseEventTypes, SupabaseRealtimePayload } from './types'
 
@@ -13,7 +14,7 @@ export class SupabaseRealtimeClient {
       chanParams['user_token'] = userToken
     }
 
-    this.subscription = socket.channel(topic, chanParams)
+    this.subscription = socket.channel(topic, chanParams) as RealtimeSubscription
   }
 
   private getPayloadRecords(payload: any) {
